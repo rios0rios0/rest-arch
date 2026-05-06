@@ -22,7 +22,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <tomcat.version>11.0.21</tomcat.version>
+        <tomcat.version>11.0.22</tomcat.version>
         <logback.version>1.5.32</logback.version>
         <jackson-bom.version>2.21.3</jackson-bom.version>
         <log4j2.version>3.0.0-beta3</log4j2.version>
