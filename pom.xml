@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <name>ArchRest</name>
     <artifactId>rest-arch</artifactId>
-    <version>0.2.1</version>
+    <version>0.2.2</version>
     <description>ArchRest</description>
     <groupId>com</groupId>
     <modelVersion>4.0.0</modelVersion>
