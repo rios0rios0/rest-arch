@@ -24,7 +24,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <tomcat.version>11.0.22</tomcat.version>
         <logback.version>1.5.33</logback.version>
-        <jackson-bom.version>2.21.3</jackson-bom.version>
+        <jackson-bom.version>2.21.4</jackson-bom.version>
         <log4j2.version>3.0.0-beta3</log4j2.version>
     </properties>
     <dependencies>
