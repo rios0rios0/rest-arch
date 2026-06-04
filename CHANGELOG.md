@@ -20,8 +20,8 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ### Security
 
-- bumped `spring-boot-starter-parent` from `3.4.13` to `3.5.14` to remediate CVEs introduced in the `3.4.x` line
-- removed the ineffective `log4j2.version=3.0.0-beta3` property override that Spring Boot BOM was silently ignoring; the parent BOM now manages Log4j at a non-vulnerable version
+- bumped `spring-boot-starter-parent` from `3.4.13` to `3.5.14` to remediate `CVE-2026-40972` and `CVE-2026-40973` (HIGH severity in Spring Boot `3.4.x`)
+- overrode `log4j2.version` to `2.26.0` to remediate `CVE-2026-34477` and `CVE-2026-34479` in `log4j-api 2.24.3` shipped by Spring Boot `3.5.14`
 
 ### Changed
 
