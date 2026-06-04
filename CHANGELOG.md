@@ -18,9 +18,19 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [0.2.4] - 2026-06-03
 
+### Security
+
+- bumped `spring-boot-starter-parent` from `3.4.13` to `3.5.14` to remediate CVEs introduced in the `3.4.x` line
+- removed the ineffective `log4j2.version=3.0.0-beta3` property override that Spring Boot BOM was silently ignoring; the parent BOM now manages Log4j at a non-vulnerable version
+
 ### Changed
 
-- changed the Java dependencies to their latest versions
+- bumped `logback.version` from `1.5.32` to `1.5.34`
+- bumped `jackson-bom.version` from `2.21.3` to `2.22.0`
+
+### Fixed
+
+- fixed ProGuard dead-code false positive for `RestService` by adding `.proguard-keep.pro` keep rules; the abstract class is intended to be subclassed by library consumers at runtime
 
 ## [0.2.3] - 2026-05-29
 
