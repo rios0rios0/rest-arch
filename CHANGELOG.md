@@ -16,6 +16,14 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+### Changed
+
+- changed the Java dependencies to their latest stable versions
+
+### Security
+
+- kept `log4j2.version` pinned to `2.26.0` instead of the auto-updated `3.0.0-beta3`: Spring Boot silently ignores the `3.x` pre-release override and falls back to the CVE-affected `log4j-api` `2.24.x` (`CVE-2026-34477`, `CVE-2026-34479`)
+
 ## [0.2.4] - 2026-06-03
 
 ### Security
