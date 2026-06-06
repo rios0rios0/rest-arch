@@ -19,6 +19,7 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 ### Changed
 
 - changed the Java dependencies to their latest stable versions
+- changed the Java dependencies to their latest versions
 
 ### Security
 
