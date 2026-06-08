@@ -19,6 +19,7 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 ### Changed
 
 - changed the Java dependencies to their latest stable versions
+- refreshed `CLAUDE.md` and `.github/copilot-instructions.md` to reflect the Spring Boot parent bump from `3.4.13` to `3.5.14`
 
 ### Security
 

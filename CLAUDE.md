@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-`rest-arch` is a Java 21 / Spring Boot 3.4 **library** (not a bootable application). It provides an abstract `RestService<T extends Serializable>` base class for consuming REST APIs. There is no `spring-boot-maven-plugin` — you cannot run `mvn spring-boot:run`.
+`rest-arch` is a Java 21 / Spring Boot 3.5 **library** (not a bootable application). It provides an abstract `RestService<T extends Serializable>` base class for consuming REST APIs. There is no `spring-boot-maven-plugin` — you cannot run `mvn spring-boot:run`.
 
 ## Build and test
 
@@ -23,7 +23,7 @@ mvn package -DskipTests  # JAR without tests
 
 ## Key dependencies
 
-Spring Boot 3.4.13, OkHttp 5.3.2, Apache HttpComponents Client 5.x, Guava 33.6.0-jre, Joda-Time 2.14.2, JUnit 4.13.2. Jackson and Gson versions are Spring Boot managed.
+Spring Boot 3.5.14, OkHttp 5.3.2, Apache HttpComponents Client 5.x, Guava 33.6.0-jre, Joda-Time 2.14.2, JUnit 4.13.2. Jackson and Gson versions are Spring Boot managed.
 
 ## Conventions
 
