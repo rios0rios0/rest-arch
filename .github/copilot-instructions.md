@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-`rest-arch` is a RESTful architecture reference **library** built with **Java 21** and **Spring Boot 3.4**. It provides an abstract `RestService<T>` base class that encapsulates common patterns for consuming REST APIs (GET, POST, JSON deserialization, error handling), intended to be extended by concrete service classes in applications that integrate with external REST backends. This is a library JAR, not a bootable application — there is no `spring-boot-maven-plugin`.
+`rest-arch` is a RESTful architecture reference **library** built with **Java 21** and **Spring Boot 3.5**. It provides an abstract `RestService<T>` base class that encapsulates common patterns for consuming REST APIs (GET, POST, JSON deserialization, error handling), intended to be extended by concrete service classes in applications that integrate with external REST backends. This is a library JAR, not a bootable application — there is no `spring-boot-maven-plugin`.
 
 ## Repository Structure
 
@@ -28,7 +28,7 @@ CHANGELOG.md                   # Version history following Keep a Changelog
 ## Technology Stack
 
 - **Language**: Java 21
-- **Framework**: Spring Boot 3.4.13 (spring-boot-starter-web)
+- **Framework**: Spring Boot 3.5.14 (spring-boot-starter-web)
 - **Build**: Apache Maven
 - **HTTP clients**: Spring `RestTemplate`, OkHttp 5.3.2, Apache HttpComponents Client 5.x
 - **JSON**: Jackson Databind, Gson (Spring Boot managed)
