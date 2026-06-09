@@ -25,7 +25,7 @@
         <tomcat.version>11.0.22</tomcat.version>
         <logback.version>1.5.34</logback.version>
         <jackson-bom.version>2.22.0</jackson-bom.version>
-        <log4j2.version>2.26.0</log4j2.version>
+        <log4j2.version>3.0.0-beta3</log4j2.version>
     </properties>
     <dependencies>
         <dependency>
@@ -54,7 +54,7 @@
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>5.3.2</version>
+            <version>5.4.0</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
