@@ -16,11 +16,12 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.2.5] - 2026-06-09
+
 ### Changed
 
 - changed the Java dependencies to their latest stable versions
 - refreshed `CLAUDE.md` and `.github/copilot-instructions.md` to reflect the Spring Boot parent bump from `3.4.13` to `3.5.14`
-- changed the Java dependencies to their latest versions
 
 ### Security
 
@@ -35,8 +36,8 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ### Changed
 
-- bumped `logback.version` from `1.5.32` to `1.5.34`
 - bumped `jackson-bom.version` from `2.21.3` to `2.22.0`
+- bumped `logback.version` from `1.5.32` to `1.5.34`
 
 ### Fixed
 
