@@ -30,7 +30,7 @@ CHANGELOG.md                   # Version history following Keep a Changelog
 - **Language**: Java 21
 - **Framework**: Spring Boot 3.5.14 (spring-boot-starter-web)
 - **Build**: Apache Maven
-- **HTTP clients**: Spring `RestTemplate`, OkHttp 5.3.2, Apache HttpComponents Client 5.x
+- **HTTP clients**: Spring `RestTemplate`, OkHttp 5.4.0, Apache HttpComponents Client 5.x
 - **JSON**: Jackson Databind, Gson (Spring Boot managed)
 - **Utilities**: Guava 33.6.0-jre, Joda-Time 2.14.2
 - **Testing**: JUnit 4.13.2, spring-boot-starter-test

@@ -23,7 +23,7 @@ mvn package -DskipTests  # JAR without tests
 
 ## Key dependencies
 
-Spring Boot 3.5.14, OkHttp 5.3.2, Apache HttpComponents Client 5.x, Guava 33.6.0-jre, Joda-Time 2.14.2, JUnit 4.13.2. Jackson and Gson versions are Spring Boot managed.
+Spring Boot 3.5.14, OkHttp 5.4.0, Apache HttpComponents Client 5.x, Guava 33.6.0-jre, Joda-Time 2.14.2, JUnit 4.13.2. Jackson and Gson versions are Spring Boot managed.
 
 ## Conventions
 
