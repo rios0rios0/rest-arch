@@ -16,10 +16,12 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.2.6] - 2026-06-18
+
 ### Changed
 
-- refreshed `CLAUDE.md` and `.github/copilot-instructions.md` to correct the OkHttp version (`5.3.2` → `5.4.0`)
 - changed the Java dependencies to their latest versions
+- refreshed `CLAUDE.md` and `.github/copilot-instructions.md` to correct the OkHttp version (`5.3.2` → `5.4.0`)
 
 ## [0.2.5] - 2026-06-09
 
