@@ -16,6 +16,8 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.2.7] - 2026-06-22
+
 ### Changed
 
 - changed the Java dependencies to their latest versions
