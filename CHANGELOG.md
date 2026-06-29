@@ -20,6 +20,10 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 - changed the Java dependencies to their latest versions
 
+### Security
+
+- re-pinned `log4j2` to the stable `2.26.0` to remediate **CVE-2026-34477** and **CVE-2026-34479**; an automated dependency bump had reverted the version to the `3.0.0-beta3` pre-release, reintroducing both vulnerabilities
+
 ## [0.2.7] - 2026-06-22
 
 ### Changed
