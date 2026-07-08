@@ -27,7 +27,7 @@
         <jackson-bom.version>2.22.1</jackson-bom.version>
         <!-- Pinned to the latest stable 2.x to remediate CVE-2026-34477 and CVE-2026-34479.
              Do NOT bump to 3.0.0-beta* (pre-release, reintroduces the CVEs). -->
-        <log4j2.version>3.0.0-beta3</log4j2.version>
+        <log4j2.version>2.26.0</log4j2.version>
     </properties>
     <dependencies>
         <dependency>
