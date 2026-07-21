@@ -22,12 +22,12 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <tomcat.version>11.0.23</tomcat.version>
-        <logback.version>1.5.35</logback.version>
-        <jackson-bom.version>2.22.0</jackson-bom.version>
+        <tomcat.version>11.0.24</tomcat.version>
+        <logback.version>1.5.38</logback.version>
+        <jackson-bom.version>2.22.1</jackson-bom.version>
         <!-- Pinned to the latest stable 2.x to remediate CVE-2026-34477 and CVE-2026-34479.
              Do NOT bump to 3.0.0-beta* (pre-release, reintroduces the CVEs). -->
-        <log4j2.version>2.26.0</log4j2.version>
+        <log4j2.version>3.0.0-beta3</log4j2.version>
     </properties>
     <dependencies>
         <dependency>
