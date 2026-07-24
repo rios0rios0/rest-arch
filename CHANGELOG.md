@@ -20,6 +20,13 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 - changed the Java dependencies to their latest versions
 
+### Security
+
+- bumped `spring-framework` to `6.2.19` to remediate 16 `spring-core` vulnerabilities (**CVE-2026-41838** through **CVE-2026-41855**, including the critical JMS Jackson deserialization flaw **CVE-2026-41855**)
+- bumped `httpcore5` to `5.4.3` and `httpclient5` to the matching `5.6.2` to remediate the memory-exhaustion denial-of-service vulnerabilities **CVE-2026-54399** (HTTP/1.1 parser) and **CVE-2026-54428** (HTTP/2 HPACK decoder)
+- suppressed **CVE-2026-53914** for `kotlin-stdlib` (transitive via `okhttp`) as a documented false positive: the flaw is in the Kotlin compiler's build cache, not the runtime standard library this project ships, and no stable fixed release (Kotlin `2.4.20`) exists yet — only pre-releases
+- re-pinned `log4j2` to the stable `2.26.1` to remediate **CVE-2026-34477**, **CVE-2026-34479** and **CVE-2026-49844** (`2.26.0` remained affected by the latter); an automated dependency bump had again reverted the version to the `3.0.0-beta3` pre-release, which reintroduced the CVEs and silently dropped `log4j-api` back to the vulnerable `2.24.1`
+
 ## [0.2.8] - 2026-06-30
 
 ### Changed
