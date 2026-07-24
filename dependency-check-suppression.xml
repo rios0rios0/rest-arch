@@ -13,4 +13,22 @@
         <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-stdlib@.*$</packageUrl>
         <cve>CVE-2020-29582</cve>
     </suppress>
+    <!--
+        CVE-2026-53914: Unsafe deserialization / code execution in the Kotlin compiler's
+        build-cache metadata (fixed in Kotlin 2.4.20). Not applicable here: this is a Java
+        library that ships kotlin-stdlib only as a transitive runtime dependency of okhttp;
+        it does not run the Kotlin compiler or use the Kotlin build cache. The scanner matches
+        on the jetbrains:kotlin CPE regardless of the affected component. Bumping is not an
+        option because Kotlin 2.4.20 has no stable release yet (only 2.4.20-Beta*), and the
+        project policy forbids pinning pre-releases.
+    -->
+    <suppress>
+        <notes><![CDATA[
+            Not applicable: CVE-2026-53914 affects the Kotlin compiler build cache, not the
+            kotlin-stdlib runtime library pulled transitively by okhttp. No stable fix (2.4.20)
+            is published yet.
+        ]]></notes>
+        <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-stdlib@.*$</packageUrl>
+        <cve>CVE-2026-53914</cve>
+    </suppress>
 </suppressions>
