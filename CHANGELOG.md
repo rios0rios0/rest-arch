@@ -19,6 +19,7 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 ### Changed
 
 - changed the Java dependencies to their latest versions
+- refreshed `CLAUDE.md` and `.github/copilot-instructions.md` to document the OWASP dependency-check security gate and the pinned CVE-remediation version overrides in `pom.xml`
 
 ### Security
 
