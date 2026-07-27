@@ -25,6 +25,11 @@ mvn package -DskipTests  # JAR without tests
 
 Spring Boot 3.5.14, OkHttp 5.4.0, Apache HttpComponents Client 5.x, Guava 33.6.0-jre, Joda-Time 2.14.2, JUnit 4.13.2. Jackson and Gson versions are Spring Boot managed.
 
+## Dependency security
+
+- OWASP `dependency-check-maven` (12.2.0) is wired into the build with `failBuildOnCVSS=7` and a `dependency-check-suppression.xml`. Run it with `mvn dependency-check:check` (needs `NVD_API_KEY`; CI passes it as a secret).
+- Several versions are pinned in `pom.xml` `<properties>` (`log4j2`, `spring-framework`, `httpcore5`/`httpclient5`) to override the Spring Boot 3.5.14 managed versions and clear flagged CVEs. Read the inline comments before changing them — some carry explicit "do NOT bump" warnings (e.g. `log4j2` must stay on stable `2.26.1`, not a `3.0.0-beta*`, which reintroduces the CVEs). A blind dependency upgrade will regress the security posture.
+
 ## Conventions
 
 - Conventional Commits (`feat:`, `fix:`, `chore:`) following [rios0rios0 Git Flow](https://github.com/rios0rios0/guide/wiki/Life-Cycle/Git-Flow).

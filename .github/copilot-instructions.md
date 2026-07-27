@@ -61,6 +61,11 @@ mvn package -DskipTests
 
 The `.github/workflows/default.yaml` triggers on pushes and PRs to `main`, on all tags, and on manual dispatch. It reuses the organisation-wide reusable workflow at `rios0rios0/pipelines/.github/workflows/maven-library.yaml@main`, which handles compilation, testing, and artefact publishing automatically.
 
+## Dependency Security
+
+- The build wires in OWASP `dependency-check-maven` (12.2.0) with `failBuildOnCVSS=7` and a `dependency-check-suppression.xml`. Run the scan with `mvn dependency-check:check` (requires `NVD_API_KEY`, which CI supplies as a secret).
+- `pom.xml` `<properties>` pin overrides on top of the Spring Boot 3.5.14 managed versions (`log4j2`, `spring-framework`, `httpcore5`/`httpclient5`) specifically to remediate CVEs. The inline comments are authoritative — some pins carry "do NOT bump" warnings (notably `log4j2` must stay on stable `2.26.1` rather than a `3.0.0-beta*`). Do not suggest raising these to "latest" without checking the comment; a naive upgrade reintroduces known vulnerabilities.
+
 ## Development Workflow
 
 1. Fork the repository and create a feature branch: `git checkout -b feat/my-change`
