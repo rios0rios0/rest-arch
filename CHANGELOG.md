@@ -22,6 +22,24 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-08-26
+
+### Added
+
+- added a tailored `code-review` skill under `.github/skills/` so GitHub Copilot reviews changes against the [rios0rios0/guide](https://github.com/rios0rios0/guide/wiki) standards and this repository's own load-bearing invariants
+
+### Changed
+
+- changed the changelog to [chlog](https://github.com/luizjhonata/chlog) fragments: a change now writes its own YAML file under `.changes/unreleased/` through `chlog new --kind <Kind> --body "..."`, and `CHANGELOG.md` is GENERATED from them at release time by `chlog batch auto && chlog merge`. That is the one thing a single shared file cannot do — two branches each adding an entry no longer touch the same lines, so a rebase that used to conflict on `CHANGELOG.md` now conflicts on nothing. The `[Unreleased]` section was empty, so nothing had to be carried across. AutoBump already reads the fragments directly, so the release flow is unchanged.
+
+### Fixed
+
+- fixed the `main` pipeline, which every repository's `sast:gitleaks` job had been failing since the code-review skill landed: the skill's own security bullet listed credential prefixes verbatim to warn against writing them, and the scanner's second pass matches those prefixes on their own, so the warning tripped the rule it was describing. The bullet now names the vendors instead, and the commit that carried the original wording is allowlisted by fingerprint in `.gitleaksignore`, because the scan walks the whole history reachable from `HEAD` and no edit at the tip can clear a past commit. No credential was ever committed.
+
+### Security
+
+- bumped Apache HttpComponents Client to 5.6.4 and Tomcat to 11.0.25, clearing the three CVEs that had been failing the `main` pipeline's `sca:dependency-check` job. CVE-2026-71290 (9.1) is the one that mattered here: `HostnameVerificationPolicy#BUILTIN` has no effect on the *async* HttpClient, so anyone able to intercept the connection could impersonate the server by presenting a valid certificate issued for some other domain — and consuming REST APIs over that client is the whole point of this library. Alongside it, CVE-2026-64607 (5.3) leaks the connection whenever a `Content-Encoding` body fails to decode, exhausting the pool over time, and CVE-2026-66299 (7.5) is uncontrolled resource consumption in Tomcat's WebSocket *example* webapp, which this library never ships — it is flagged because the scanner matches the Tomcat CPE, not the shipped classes. Only those four artifacts changed version; the resolved dependency set is otherwise byte-identical, so the bump dragged in no new transitive dependency of its own.
+
 ## [0.2.9] - 2026-07-27
 
 ### Changed
