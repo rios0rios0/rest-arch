@@ -1,10 +1,10 @@
 package com.services;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.CollectionType;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.JavaType;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.type.CollectionType;
 import com.google.common.base.Joiner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.text.SimpleDateFormat;
@@ -209,10 +208,8 @@ abstract class RestService<T extends Serializable> {
 					} else {
 						result = this.objectMapper.readValue(response.getBody(), type);
 					}
-				} catch (JsonParseException e) {
+				} catch (JacksonException e) {
 					this.logger.error(messageSource.getMessage("exception.json.parse", null, LocaleContextHolder.getLocale()), e.getMessage());
-				} catch (IOException e) {
-					this.logger.error(messageSource.getMessage("exception.http.rest.unrecognized", null, LocaleContextHolder.getLocale()), e.getMessage());
 				}
 			} else {
 				this.logger.error(messageSource.getMessage("exception.http.rest.unrecognized", null, LocaleContextHolder.getLocale()),
