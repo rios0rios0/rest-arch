@@ -31,4 +31,29 @@
         <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin\-stdlib@.*$</packageUrl>
         <cve>CVE-2026-53914</cve>
     </suppress>
+    <!--
+        CVE-2022-31691: SnakeYAML deserialization reachable through the YAML editors in
+        Spring Tools 4 for Eclipse (<= 4.16.1) and the VSCode extensions Spring Boot Tools,
+        Concourse CI Pipeline Editor, Bosh Editor and Cloudfoundry Manifest YML Support
+        (<= 1.40.0). Every affected product is an IDE or editor extension; none of them is
+        org.springframework.boot:spring-boot-devtools, the Maven artifact scanned here.
+
+        The match is a name collision followed by a version coincidence: the scanner reads
+        "spring-boot-devtools" onto the vmware:spring_tools CPE, and Spring Boot's own 4.1.1
+        happens to fall inside that IDE's "4.16.1 and below" range. It appeared the moment
+        the parent moved to Boot 4 for that reason alone.
+
+        No upgrade clears it, because no version of spring-boot-devtools was ever affected.
+        4.1.1 is already the newest, matching the parent.
+    -->
+    <suppress>
+        <notes><![CDATA[
+            Not applicable: CVE-2022-31691 affects Spring Tools 4 for Eclipse and several
+            VSCode extensions, not the spring-boot-devtools Maven artifact. Matched via the
+            vmware:spring_tools CPE, whose "<= 4.16.1" range Spring Boot's 4.1.1 falls into
+            by coincidence.
+        ]]></notes>
+        <packageUrl regex="true">^pkg:maven/org\.springframework\.boot/spring\-boot\-devtools@.*$</packageUrl>
+        <cve>CVE-2022-31691</cve>
+    </suppress>
 </suppressions>

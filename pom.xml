@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.14</version>
+        <version>4.1.1</version>
         <relativePath/>
     </parent>
     <properties>
@@ -22,22 +22,32 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!-- Overrides Spring Boot's 10.1.54. Held at 11.0.25 to remediate CVE-2026-66299 (7.5),
-             which affects 11.0.0-M20 through 11.0.24 and is fixed in 11.0.25. -->
+        <!-- Overrides Spring Boot 4.1.1's 11.0.24, which carries CVE-2026-66299 (7.5) among
+             others: the flaw affects 11.0.0-M20 through 11.0.24 and is fixed in 11.0.25, which is
+             also the newest stable. -->
         <tomcat.version>11.0.25</tomcat.version>
-        <logback.version>1.6.0</logback.version>
-        <jackson-bom.version>2.22.1</jackson-bom.version>
-        <!-- Security overrides on top of the Spring Boot 3.5.14 managed versions. Each pins the
-             lowest release that clears the CVEs flagged by OWASP dependency-check (failBuildOnCVSS=7). -->
-        <!-- Pinned to the latest stable 2.x to remediate CVE-2026-34477, CVE-2026-34479 and
-             CVE-2026-49844 (note: 2.26.0 is still affected by CVE-2026-49844, so 2.26.1 is required).
-             Do NOT bump to 3.0.0-beta* (pre-release: reintroduces the CVEs and breaks log4j-bom
-             management, which silently drops log4j-api back to a vulnerable transitive version). -->
+        <!-- Newest stable; Boot 4.1.1 manages 1.5.38. -->
+        <logback.version>1.6.3</logback.version>
+        <!-- jackson-bom is deliberately NOT overridden. Boot 4.1.1 manages 3.1.5, which is Jackson
+             3: the artifacts moved to the `tools.jackson.*` packages, and Spring Framework 7
+             integrates against them. Pinning the 2.x line here would resolve a BOM that no longer
+             matches what the framework expects. -->
+        <!-- Security overrides on top of the Spring Boot 4.1.1 managed versions. Each pins the
+             newest stable release, which is also what clears the CVEs OWASP dependency-check
+             flags (failBuildOnCVSS=7). -->
+        <!-- Newest stable 2.x; Boot 4.1.1 manages 2.25.5. Remediates CVE-2026-34477,
+             CVE-2026-34479 and CVE-2026-49844 (2.26.0 is still affected by the last of those, so
+             2.26.1 is the floor). Do NOT bump to 3.0.0-beta*: a pre-release breaks log4j-bom
+             management and silently drops log4j-api back to a vulnerable transitive version. -->
         <log4j2.version>2.26.1</log4j2.version>
-        <!-- Overrides Spring Boot's 6.2.18 to remediate CVE-2026-41838 through CVE-2026-41855 (spring-core). -->
-        <spring-framework.version>6.2.19</spring-framework.version>
+        <!-- spring-framework is deliberately NOT overridden. Boot 4.1.1 manages 7.0.9, which is
+             the newest stable and the release that remediates CVE-2026-47890, CVE-2026-47891,
+             CVE-2026-47892, CVE-2026-47893, CVE-2026-59282 and CVE-2026-59283, all of which
+             affect every 6.2.x including 6.2.19, and none of which has a 6.2-line fix, because
+             6.2.20 was never published. Reaching 7.0.9 is why the parent moved to Boot 4. -->
         <!-- Overrides Spring Boot's 5.3.6 to remediate CVE-2026-54399 and CVE-2026-54428 (httpcore5/-h2);
-             httpclient5 is moved to 5.6.4, the release tested against httpcore5 5.4.3. -->
+             httpclient5 is moved to 5.6.4, the release tested against httpcore5 5.4.3.
+             5.4.3 is the newest stable. Do NOT move to 5.5-beta*/5.5-alpha1 (pre-release). -->
         <httpcore5.version>5.4.3</httpcore5.version>
         <!-- 5.6.4 remediates CVE-2026-71290 (9.1: HostnameVerificationPolicy#BUILTIN is silently ignored
              by the async client, letting an interceptor present a valid certificate for another domain)
@@ -77,14 +87,17 @@
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>5.4.0</version>
+            <version>5.5.0</version>
         </dependency>
+        <!-- Jackson 3 moved databind and core to the `tools.jackson.core` group; only
+             jackson-annotations kept its original coordinates. All three stay version-less:
+             `tools.jackson:jackson-bom`, imported by the Boot parent, manages every one. -->
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
+            <groupId>tools.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
+            <groupId>tools.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
         </dependency>
         <dependency>
@@ -102,7 +115,7 @@
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
-            <version>2.14.2</version>
+            <version>2.14.3</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -111,7 +124,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>33.6.0-jre</version>
+            <version>33.7.1-jre</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

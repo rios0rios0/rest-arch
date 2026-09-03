@@ -1,0 +1,3 @@
+kind: 'Security'
+body: 'suppressed CVE-2022-31691 against `spring-boot-devtools` as a documented false positive. The advisory covers Spring Tools 4 for Eclipse (<= 4.16.1) and the VSCode extensions Spring Boot Tools, Concourse CI Pipeline Editor, Bosh Editor and Cloudfoundry Manifest YML Support (<= 1.40.0) -- every affected product is an IDE or an editor extension, and none of them is the `spring-boot-devtools` Maven artifact. The scanner reads the artifact name onto the `vmware:spring_tools` CPE, and Spring Boot''s own `4.1.1` happens to fall inside that IDE''s `4.16.1 and below` range, so it surfaced the moment the parent moved to Boot 4. No upgrade clears it, because no release of `spring-boot-devtools` was ever affected.'
+time: '2026-09-03T04:31:54.080018579Z'
