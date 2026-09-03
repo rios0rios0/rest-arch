@@ -22,6 +22,13 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-09-03
+
+### Security
+
+- suppressed CVE-2022-31691 against `spring-boot-devtools` as a documented false positive. The advisory covers Spring Tools 4 for Eclipse (<= 4.16.1) and the VSCode extensions Spring Boot Tools, Concourse CI Pipeline Editor, Bosh Editor and Cloudfoundry Manifest YML Support (<= 1.40.0) -- every affected product is an IDE or an editor extension, and none of them is the `spring-boot-devtools` Maven artifact. The scanner reads the artifact name onto the `vmware:spring_tools` CPE, and Spring Boot's own `4.1.1` happens to fall inside that IDE's `4.16.1 and below` range, so it surfaced the moment the parent moved to Boot 4. No upgrade clears it, because no release of `spring-boot-devtools` was ever affected.
+- upgraded Spring Boot from `3.5.14` to `4.1.1`, which is what reaches Spring Framework `7.0.9`. `spring-core` `6.2.19` is affected by CVE-2026-47890, CVE-2026-47891, CVE-2026-47892, CVE-2026-47893, CVE-2026-59282 and CVE-2026-59283 (four of them 9.8), every one of which is fixed only in `6.2.20` or `7.0.9` -- and `6.2.20` was never published, so the `6.2` line has no remedy at all. Boot `4.1.1` manages `7.0.9`, so the framework override is gone rather than raised. The jump carries Jackson 3: `jackson-databind` and `jackson-core` moved to the `tools.jackson.core` group while `jackson-annotations` kept its coordinates, and `RestService` moved with them -- its `readValue` no longer declares a checked exception, so the `IOException` catch went and `JsonParseException` became the unchecked `JacksonException`. `tomcat` stays overridden at `11.0.25`: Boot `4.1.1` manages `11.0.24`, which still carries CVE-2026-66299 and two others. `log4j2` stays at `2.26.1` over Boot's `2.25.5`, and `logback` at `1.6.3` over Boot's `1.5.38`, both being the newest stable.
+
 ## [0.4.0] - 2026-08-28
 
 ### Added
