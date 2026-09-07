@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-`rest-arch` is a Java 21 / Spring Boot 3.5 **library** (not a bootable application). It provides an abstract `RestService<T extends Serializable>` base class for consuming REST APIs. There is no `spring-boot-maven-plugin` — you cannot run `mvn spring-boot:run`.
+`rest-arch` is a Java 21 / Spring Boot 4.1 **library** (not a bootable application). It provides an abstract `RestService<T extends Serializable>` base class for consuming REST APIs. There is no `spring-boot-maven-plugin` — you cannot run `mvn spring-boot:run`.
 
 ## Build and test
 
@@ -23,12 +23,12 @@ mvn package -DskipTests  # JAR without tests
 
 ## Key dependencies
 
-Spring Boot 3.5.14, OkHttp 5.4.0, Apache HttpComponents Client 5.x, Guava 33.6.0-jre, Joda-Time 2.14.2, JUnit 4.13.2. Jackson and Gson versions are Spring Boot managed.
+Spring Boot 4.1.1 (Spring Framework 7.0.9), OkHttp 5.5.0, Apache HttpComponents Client 5.x, Guava 33.7.1-jre, Joda-Time 2.14.3, JUnit 4.13.2. Jackson is Jackson 3 — `jackson-databind`/`jackson-core` live under the `tools.jackson.core` group (`jackson-annotations` kept its old coordinates), all managed by the Spring Boot parent's `tools.jackson:jackson-bom`. `RestService` imports `tools.jackson.*`. Gson is also Spring Boot managed.
 
 ## Dependency security
 
 - OWASP `dependency-check-maven` (12.2.0) is wired into the build with `failBuildOnCVSS=7` and a `dependency-check-suppression.xml`. Run it with `mvn dependency-check:check` (needs `NVD_API_KEY`; CI passes it as a secret).
-- Several versions are pinned in `pom.xml` `<properties>` (`log4j2`, `spring-framework`, `httpcore5`/`httpclient5`) to override the Spring Boot 3.5.14 managed versions and clear flagged CVEs. Read the inline comments before changing them — some carry explicit "do NOT bump" warnings (e.g. `log4j2` must stay on stable `2.26.1`, not a `3.0.0-beta*`, which reintroduces the CVEs). A blind dependency upgrade will regress the security posture.
+- Several versions are pinned in `pom.xml` `<properties>` (`tomcat`, `logback`, `log4j2`, `httpcore5`/`httpclient5`) to override the Spring Boot 4.1.1 managed versions and clear flagged CVEs. `spring-framework` is deliberately **not** overridden — Boot 4.1.1 already manages 7.0.9, the release that remediates the flagged `spring-core` CVEs (reaching it is why the parent moved to Boot 4). Read the inline comments before changing any pin — some carry explicit "do NOT bump" warnings (e.g. `log4j2` must stay on stable `2.26.1`, not a `3.0.0-beta*`, which reintroduces the CVEs). A blind dependency upgrade will regress the security posture.
 
 ## Conventions
 
