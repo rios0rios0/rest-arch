@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-`rest-arch` is a RESTful architecture reference **library** built with **Java 21** and **Spring Boot 3.5**. It provides an abstract `RestService<T>` base class that encapsulates common patterns for consuming REST APIs (GET, POST, JSON deserialization, error handling), intended to be extended by concrete service classes in applications that integrate with external REST backends. This is a library JAR, not a bootable application — there is no `spring-boot-maven-plugin`.
+`rest-arch` is a RESTful architecture reference **library** built with **Java 21** and **Spring Boot 4.1**. It provides an abstract `RestService<T>` base class that encapsulates common patterns for consuming REST APIs (GET, POST, JSON deserialization, error handling), intended to be extended by concrete service classes in applications that integrate with external REST backends. This is a library JAR, not a bootable application — there is no `spring-boot-maven-plugin`.
 
 ## Repository Structure
 
@@ -28,11 +28,11 @@ CHANGELOG.md                   # Version history following Keep a Changelog
 ## Technology Stack
 
 - **Language**: Java 21
-- **Framework**: Spring Boot 3.5.14 (spring-boot-starter-web)
+- **Framework**: Spring Boot 4.1.1 (Spring Framework 7.0.9, spring-boot-starter-web)
 - **Build**: Apache Maven
-- **HTTP clients**: Spring `RestTemplate`, OkHttp 5.4.0, Apache HttpComponents Client 5.x
-- **JSON**: Jackson Databind, Gson (Spring Boot managed)
-- **Utilities**: Guava 33.6.0-jre, Joda-Time 2.14.2
+- **HTTP clients**: Spring `RestTemplate`, OkHttp 5.5.0, Apache HttpComponents Client 5.x
+- **JSON**: Jackson 3 under the `tools.jackson.core` group (`jackson-annotations` keeps its old coordinates), Gson — all Spring Boot managed
+- **Utilities**: Guava 33.7.1-jre, Joda-Time 2.14.3
 - **Testing**: JUnit 4.13.2, spring-boot-starter-test
 - **CI/CD**: GitHub Actions — delegates to `rios0rios0/pipelines/.github/workflows/maven-library.yaml@main`
 
@@ -64,7 +64,7 @@ The `.github/workflows/default.yaml` triggers on pushes and PRs to `main`, on al
 ## Dependency Security
 
 - The build wires in OWASP `dependency-check-maven` (12.2.0) with `failBuildOnCVSS=7` and a `dependency-check-suppression.xml`. Run the scan with `mvn dependency-check:check` (requires `NVD_API_KEY`, which CI supplies as a secret).
-- `pom.xml` `<properties>` pin overrides on top of the Spring Boot 3.5.14 managed versions (`log4j2`, `spring-framework`, `httpcore5`/`httpclient5`) specifically to remediate CVEs. The inline comments are authoritative — some pins carry "do NOT bump" warnings (notably `log4j2` must stay on stable `2.26.1` rather than a `3.0.0-beta*`). Do not suggest raising these to "latest" without checking the comment; a naive upgrade reintroduces known vulnerabilities.
+- `pom.xml` `<properties>` pin overrides on top of the Spring Boot 4.1.1 managed versions (`tomcat`, `logback`, `log4j2`, `httpcore5`/`httpclient5`) specifically to remediate CVEs. `spring-framework` is intentionally left un-pinned — Boot 4.1.1 manages 7.0.9, which is the release that already clears the flagged `spring-core` CVEs. The inline comments are authoritative — some pins carry "do NOT bump" warnings (notably `log4j2` must stay on stable `2.26.1` rather than a `3.0.0-beta*`). Do not suggest raising these to "latest" without checking the comment; a naive upgrade reintroduces known vulnerabilities.
 
 ## Development Workflow
 
