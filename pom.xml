@@ -25,7 +25,7 @@
         <!-- Overrides Spring Boot 4.1.1's 11.0.24, which carries CVE-2026-66299 (7.5) among
              others: the flaw affects 11.0.0-M20 through 11.0.24 and is fixed in 11.0.25, which is
              also the newest stable. -->
-        <tomcat.version>11.0.25</tomcat.version>
+        <tomcat.version>11.0.26</tomcat.version>
         <!-- Newest stable; Boot 4.1.1 manages 1.5.38. -->
         <logback.version>1.6.3</logback.version>
         <!-- jackson-bom is deliberately NOT overridden. Boot 4.1.1 manages 3.1.5, which is Jackson
