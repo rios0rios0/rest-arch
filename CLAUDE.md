@@ -32,7 +32,7 @@ Spring Boot 4.1.1 (Spring Framework 7.0.9), OkHttp 5.5.0, Apache HttpComponents 
 
 ## Conventions
 
-- Conventional Commits (`feat:`, `fix:`, `chore:`) following [rios0rios0 Git Flow](https://github.com/rios0rios0/guide/wiki/Life-Cycle/Git-Flow).
+- Conventional Commits (`feat:`, `fix:`, `chore:`) following [rios0rios0 Git Flow](https://github.com/rios0rios0/guide/wiki/Git-Flow).
 - `null` checks use `Objects.isNull` / `Objects.nonNull`.
 - SLF4J logging via `LoggerFactory.getLogger(getClass())`.
 

@@ -71,7 +71,7 @@ The `.github/workflows/default.yaml` triggers on pushes and PRs to `main`, on al
 1. Fork the repository and create a feature branch: `git checkout -b feat/my-change`
 2. Build and verify: `mvn clean install`
 3. Run tests: `mvn test`
-4. Commit using [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `chore:`, etc.) following the [rios0rios0 Git Flow guide](https://github.com/rios0rios0/guide/wiki/Life-Cycle/Git-Flow)
+4. Commit using [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `chore:`, etc.) following the [rios0rios0 Git Flow guide](https://github.com/rios0rios0/guide/wiki/Git-Flow)
 5. Open a pull request against `main`
 
 ## Coding Conventions
