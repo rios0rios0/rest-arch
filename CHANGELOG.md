@@ -22,6 +22,16 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.4.3] - 2026-09-23
+
+### Changed
+
+- changed the Java dependencies to their latest versions
+
+### Fixed
+
+- fixed the rios0rios0 Git Flow guide link in `CLAUDE.md` and `.github/copilot-instructions.md` to the flat `/wiki/Git-Flow` wiki path
+
 ## [0.4.2] - 2026-09-08
 
 ### Changed
