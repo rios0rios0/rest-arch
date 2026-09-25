@@ -27,7 +27,7 @@
              also the newest stable. -->
         <tomcat.version>11.0.26</tomcat.version>
         <!-- Newest stable; Boot 4.1.1 manages 1.5.38. -->
-        <logback.version>1.6.3</logback.version>
+        <logback.version>1.6.4</logback.version>
         <!-- jackson-bom is deliberately NOT overridden. Boot 4.1.1 manages 3.1.5, which is Jackson
              3: the artifacts moved to the `tools.jackson.*` packages, and Spring Framework 7
              integrates against them. Pinning the 2.x line here would resolve a BOM that no longer
@@ -48,7 +48,7 @@
         <!-- Overrides Spring Boot's 5.3.6 to remediate CVE-2026-54399 and CVE-2026-54428 (httpcore5/-h2);
              httpclient5 is moved to 5.6.4, the release tested against httpcore5 5.4.3.
              5.4.3 is the newest stable. Do NOT move to 5.5-beta*/5.5-alpha1 (pre-release). -->
-        <httpcore5.version>5.4.3</httpcore5.version>
+        <httpcore5.version>5.4.4</httpcore5.version>
         <!-- 5.6.4 remediates CVE-2026-71290 (9.1: HostnameVerificationPolicy#BUILTIN is silently ignored
              by the async client, letting an interceptor present a valid certificate for another domain)
              and CVE-2026-64607 (5.3: a Content-Encoding decode error leaks the connection and exhausts
