@@ -22,6 +22,12 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.4.6] - 2026-10-14
+
+### Changed
+
+- changed the transitive Java dependencies to their latest versions
+
 ## [0.4.5] - 2026-10-07
 
 ### Changed
