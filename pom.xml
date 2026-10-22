@@ -87,7 +87,7 @@
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>5.5.0</version>
+            <version>5.5.1</version>
         </dependency>
         <!-- Jackson 3 moved databind and core to the `tools.jackson.core` group; only
              jackson-annotations kept its original coordinates. All three stay version-less:
