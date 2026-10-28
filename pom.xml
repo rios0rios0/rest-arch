@@ -27,7 +27,7 @@
              also the newest stable. -->
         <tomcat.version>11.0.27</tomcat.version>
         <!-- Newest stable; Boot 4.1.1 manages 1.5.38. -->
-        <logback.version>1.6.5</logback.version>
+        <logback.version>1.6.6</logback.version>
         <!-- jackson-bom is deliberately NOT overridden. Boot 4.1.1 manages 3.1.5, which is Jackson
              3: the artifacts moved to the `tools.jackson.*` packages, and Spring Framework 7
              integrates against them. Pinning the 2.x line here would resolve a BOM that no longer
