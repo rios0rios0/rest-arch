@@ -22,6 +22,12 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.4.7] - 2026-10-28
+
+### Changed
+
+- changed the Maven dependency `com.squareup.okhttp3:okhttp` from `5.5.0` to `5.5.1`
+
 ## [0.4.6] - 2026-10-14
 
 ### Changed
