@@ -1,0 +1,3 @@
+kind: 'Changed'
+body: 'refreshed `AGENTS.md`, `.github/copilot-instructions.md`, the code-review skill, `README.md`, and `CONTRIBUTING.md` to drop stale dependency versions and `mvn spring-boot:run`, and to document that `app.restservice.base` comes from the consuming application, that `RestService` is package-private, and that the consuming application must declare a `RestTemplate` bean and define the `exception.*` message keys'
+time: '2026-10-29T00:18:18.286754993Z'

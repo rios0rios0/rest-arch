@@ -7,7 +7,7 @@ development practices, refer to the **[Development Guide](https://github.com/rio
 
 ## Prerequisites
 
-- [JDK](https://adoptium.net/) 8+
+- [JDK](https://adoptium.net/) 21+
 - [Apache Maven](https://maven.apache.org/) 3.6+
 
 ## Development Workflow
@@ -18,17 +18,13 @@ development practices, refer to the **[Development Guide](https://github.com/rio
    ```bash
    mvn clean install
    ```
-4. Run the Spring Boot application locally:
-   ```bash
-   mvn spring-boot:run
-   ```
-5. Run the test suite:
+4. Run the test suite:
    ```bash
    mvn test
    ```
-6. Package the application as an executable JAR:
+5. Package the library JAR (this is a library, not a bootable application; there is no `spring-boot:run`):
    ```bash
    mvn package
    ```
-7. Commit following the [commit conventions](https://github.com/rios0rios0/guide/wiki/Life-Cycle/Git-Flow)
-8. Open a pull request against `main`
+6. Commit following the [commit conventions](https://github.com/rios0rios0/guide/wiki/Git-Flow)
+7. Open a pull request against `main`

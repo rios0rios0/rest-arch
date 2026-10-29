@@ -13,7 +13,7 @@ A RESTful architecture reference project built with Java and Spring Boot, demons
 ## Features
 
 - Spring Boot-based REST service skeleton
-- Maven build system with Java 8 support
+- Maven build system targeting Java 21 and Spring Boot 4
 - Pre-configured application properties and test setup
 
 ## Project Structure
@@ -24,7 +24,7 @@ src/
     java/com/services/RestService.java    # REST service implementation
     resources/application.properties      # Application configuration
   test/
-    java/com/ApplicationTest.java         # Application tests
+    java/com/ApplicationTest.java         # Spring Boot entry point for tests
 pom.xml                                   # Maven project descriptor
 ```
 
@@ -38,13 +38,12 @@ mvn clean install
 
 ## Usage
 
-Run the application with:
+`rest-arch` is a library JAR, not a bootable application, so there is no `mvn spring-boot:run`. After `mvn clean install`, add it as a dependency of your Spring Boot application, then:
 
-```bash
-mvn spring-boot:run
-```
-
-The REST service will start on the default Spring Boot port.
+1. Create a `@Service` class in package `com.services` (the `RestService` base class and its methods are package-private) that extends `RestService<YourEntity>`, where `YourEntity implements Serializable`.
+2. Call the inherited `getForEntity`, `getForList`, `postForEntity`, and `postForList` methods with paths relative to the base URL.
+3. Set `app.restservice.base` to the remote API's base URL in your application's configuration.
+4. Declare a `RestTemplate` bean (Spring Boot only auto-configures `RestTemplateBuilder`), and define the `exception.url.not.found`, `exception.object.not.found`, `exception.http.rest.unrecognized`, and `exception.json.parse` message keys in your `MessageSource` (e.g. `messages.properties`).
 
 ## Contributing
 
