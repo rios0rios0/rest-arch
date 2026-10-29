@@ -5,7 +5,7 @@ description: "Review pull requests and diffs in rest-arch — the Spring Boot RE
 
 # Code review — `rest-arch`
 
-`rest-arch` provides `RestService<T extends Serializable>`, an abstract generic base for consuming HTTP APIs: it resolves the entity type by reflection at construction time and gives subclasses typed `getForEntity`, `getForList`, `postForEntity`, and `postForList`. It is a library, so every protected member is a contract with its consumers.
+`rest-arch` provides `RestService<T extends Serializable>`, an abstract generic base for consuming HTTP APIs: it resolves the entity type by reflection at construction time and gives subclasses typed `getForEntity`, `getForList`, `postForEntity`, and `postForList`. It is a library, so every non-private member is a contract with its consumers.
 
 ## When to use this skill
 
@@ -20,7 +20,7 @@ The canonical engineering standards live in the
 repo-tailored index into that guide plus the rules that only apply here. Precedence, highest
 first:
 
-1. This repository's `.github/copilot-instructions.md`, `CLAUDE.md`, and `CONTRIBUTING.md` —
+1. This repository's `AGENTS.md`, `.github/copilot-instructions.md`, and `CONTRIBUTING.md` —
    they describe *this* codebase and its load-bearing invariants.
 2. The **rios0rios0/guide** wiki — the shared standard.
 3. General language idiom.
@@ -72,7 +72,7 @@ guide disagree, the guide wins and this file should be corrected in the same pul
 These are the checks that catch real defects in this repository. Work through
 them before the generic ones.
 
-- **This is a library — public and protected members are API.** Changing the signature of `getForEntity`, `getForList`, `postForEntity`, `postForList`, or the constructor breaks every `@Service` subclass. Such a change needs the three-place breaking-change flag and a MAJOR bump.
+- **This is a library — every non-private member is API.** `RestService`, its constructor, and its `get*`/`post*` methods are package-private, so consumer subclasses live in `com.services`; `verifyMap` is public. Changing the signature of `getForEntity`, `getForList`, `postForEntity`, `postForList`, `verifyMap`, or the constructor breaks every `@Service` subclass. Such a change needs the three-place breaking-change flag and a MAJOR bump.
 - **Reflection-based type resolution is fragile.** The constructor resolves `T` from the generic superclass; a subclass that does not parameterise it, or an added layer of inheritance, fails at runtime rather than compile time. Any change here needs a test for the anonymous-subclass and double-inheritance cases.
 - **404 maps to `ObjectNotFoundException`, everything else is logged.** That mapping is the contract consumers code against; silently swallowing a 5xx, or turning it into a `null` return, is a **Critical** finding.
 - **Error messages are localised** via `MessageSource` and `LocaleContextHolder` — a hard-coded English string in an exception is a finding.
@@ -165,8 +165,9 @@ hand.
 - Fragment bodies start with a lowercase verb in simple past tense, capitalise proper nouns
   (GitHub, Go, Docker), and wrap code identifiers and versions in backticks.
 - `README.md` is updated whenever usage, setup, configuration, or architecture changes;
-  `.github/copilot-instructions.md` and `CLAUDE.md` whenever the workflow, commands, or
-  structure changes. Documentation and code ship in one commit.
+  `AGENTS.md` and `.github/copilot-instructions.md` whenever the workflow, commands, or
+  structure changes (`CLAUDE.md` stays the single import line `@AGENTS.md`). Documentation
+  and code ship in one commit.
 
 ## Git Flow and pull-request hygiene
 
@@ -228,7 +229,7 @@ A review that raises noise gets ignored. Do not report these:
 ### Change-control checklist
 - [ ] Changelog entry present for every behavioural change
 - [ ] `README.md` updated if usage, setup, or architecture changed
-- [ ] `.github/copilot-instructions.md` and `CLAUDE.md` updated if the workflow, commands, or structure changed
+- [ ] `AGENTS.md` and `.github/copilot-instructions.md` updated if the workflow, commands, or structure changed
 - [ ] Commit messages follow `type(SCOPE): message` in simple past tense
 - [ ] Breaking changes flagged in the commit footer, the changelog, and the PR description
 

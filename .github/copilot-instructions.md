@@ -20,9 +20,11 @@ src/
   test/
     java/com/
       ApplicationTest.java     # Spring Boot application entry point for tests
+.changes/unreleased/           # Pending chlog changelog fragments
 pom.xml                        # Maven project descriptor
+AGENTS.md                      # Shared AI agent instructions (CLAUDE.md only imports it)
 CONTRIBUTING.md                # Contribution guidelines and development workflow
-CHANGELOG.md                   # Version history following Keep a Changelog
+CHANGELOG.md                   # Version history, generated from the chlog fragments
 ```
 
 ## Technology Stack
@@ -30,10 +32,11 @@ CHANGELOG.md                   # Version history following Keep a Changelog
 - **Language**: Java 21
 - **Framework**: Spring Boot 4.1.1 (Spring Framework 7.0.9, spring-boot-starter-web)
 - **Build**: Apache Maven
-- **HTTP clients**: Spring `RestTemplate`, OkHttp 5.5.0, Apache HttpComponents Client 5.x
+- **HTTP clients**: Spring `RestTemplate`, OkHttp 5.x, Apache HttpComponents Client 5.x
 - **JSON**: Jackson 3 under the `tools.jackson.core` group (`jackson-annotations` keeps its old coordinates), Gson — all Spring Boot managed
-- **Utilities**: Guava 33.7.1-jre, Joda-Time 2.14.3
-- **Testing**: JUnit 4.13.2, spring-boot-starter-test
+- **Utilities**: Guava, Joda-Time
+- **Testing**: JUnit 4, spring-boot-starter-test
+- Exact versions live in `pom.xml`; automated updates bump them weekly.
 - **CI/CD**: GitHub Actions — delegates to `rios0rios0/pipelines/.github/workflows/maven-library.yaml@main`
 
 ## Build, Test, and Run Commands
@@ -52,7 +55,8 @@ mvn package -DskipTests
 ## Architecture and Design Patterns
 
 - **Abstract generic service**: `RestService<T extends Serializable>` uses Java generics and reflection to auto-resolve the entity type at construction time. Concrete subclasses annotated with `@Service` inherit typed `getForEntity`, `getForList`, `postForEntity`, and `postForList` methods.
-- **Configuration via `@Value`**: The base URL for the remote REST API is injected through `${app.restservice.base}` in `application.properties`.
+- **Configuration via `@Value`**: The base URL for the remote REST API is injected through `${app.restservice.base}`, which the consuming application must define; this library's `application.properties` does not set it.
+- **Package-private API**: `RestService`, its constructor, and its `get*`/`post*` methods are package-private (only `verifyMap` is public), so concrete subclasses must live in package `com.services`.
 - **Centralized error handling**: `HttpClientErrorException` is caught in `getRequest`/`postRequest`; 404 errors throw an `ObjectNotFoundException` with a localized message; other errors are logged.
 - **Internationalization**: Error messages are resolved via `MessageSource` using the current locale (`LocaleContextHolder`).
 - **Date normalisation in query params**: `verifyMap` serialises `Date` values as `yyyy-MM-dd` strings before appending them to query strings.
@@ -76,7 +80,6 @@ The `.github/workflows/default.yaml` triggers on pushes and PRs to `main`, on al
 
 ## Coding Conventions
 
-- Class and method names follow standard Java naming conventions (PascalCase for classes, camelCase for methods).
 - `@SuppressWarnings("unchecked")` is used on the abstract class due to the generic type-cast in the constructor.
 - Package root is `com`; services live under `com.services`.
 - Logging uses SLF4J (`LoggerFactory.getLogger(getClass())`).
@@ -91,7 +94,7 @@ The `.github/workflows/default.yaml` triggers on pushes and PRs to `main`, on al
 3. Use the inherited `getForEntity`, `getForList`, `postForEntity`, `postForList` methods, passing relative URL paths.
 
 ### Changing the base URL
-Set `app.restservice.base` in `src/main/resources/application.properties` (or the appropriate environment-specific properties file).
+Set `app.restservice.base` in the consuming application's configuration. Do not add a value to this library's `src/main/resources/application.properties` — it would ship inside the JAR as a hard-coded host.
 
 ### Releasing a new version
 1. Create a branch `bump/x.x.x`.

@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI coding agents (Claude Code, Codex, Cursor, GitHub Copilot) when working with code in this repository.
 
 ## What this is
 
@@ -17,13 +17,14 @@ mvn package -DskipTests  # JAR without tests
 ## Architecture
 
 - `RestService<T>` resolves its generic type via reflection at construction time. Concrete subclasses inherit typed `getForEntity`, `getForList`, `postForEntity`, `postForList` methods.
-- Base URL injected via `@Value("${app.restservice.base}")`.
+- Base URL injected via `@Value("${app.restservice.base}")`; the consuming application defines it. This library's `application.properties` does not set it, and must not (a value there ships a hard-coded host in the JAR).
+- `RestService`, its constructor, and its `get*`/`post*` methods are package-private (only `verifyMap` is public), so consumer subclasses must live in package `com.services`. Every non-private member is consumer-facing API.
 - `ObjectNotFoundException` thrown on 404; error messages resolved through `MessageSource` + `LocaleContextHolder`.
 - Package root is `com`; services live under `com.services`.
 
 ## Key dependencies
 
-Spring Boot 4.1.1 (Spring Framework 7.0.9), OkHttp 5.5.0, Apache HttpComponents Client 5.x, Guava 33.7.1-jre, Joda-Time 2.14.3, JUnit 4.13.2. Jackson is Jackson 3 — `jackson-databind`/`jackson-core` live under the `tools.jackson.core` group (`jackson-annotations` kept its old coordinates), all managed by the Spring Boot parent's `tools.jackson:jackson-bom`. `RestService` imports `tools.jackson.*`. Gson is also Spring Boot managed.
+Spring Boot 4.1.1 (Spring Framework 7.0.9), OkHttp 5.x, Apache HttpComponents Client 5.x, Guava, Joda-Time, JUnit 4; exact versions live in `pom.xml` and move with every automated bump. Jackson is Jackson 3 — `jackson-databind`/`jackson-core` live under the `tools.jackson.core` group (`jackson-annotations` kept its old coordinates), all managed by the Spring Boot parent's `tools.jackson:jackson-bom`. `RestService` imports `tools.jackson.*`. Gson is also Spring Boot managed.
 
 ## Dependency security
 
