@@ -43,6 +43,7 @@ mvn clean install
 1. Create a `@Service` class in package `com.services` (the `RestService` base class and its methods are package-private) that extends `RestService<YourEntity>`, where `YourEntity implements Serializable`.
 2. Call the inherited `getForEntity`, `getForList`, `postForEntity`, and `postForList` methods with paths relative to the base URL.
 3. Set `app.restservice.base` to the remote API's base URL in your application's configuration.
+4. Declare a `RestTemplate` bean (Spring Boot only auto-configures `RestTemplateBuilder`), and define the `exception.url.not.found`, `exception.object.not.found`, `exception.http.rest.unrecognized`, and `exception.json.parse` message keys in your `MessageSource` (e.g. `messages.properties`).
 
 ## Contributing
 
