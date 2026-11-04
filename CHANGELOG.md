@@ -22,6 +22,24 @@ Exceptions are acceptable depending on the circumstances (critical bug fixes tha
 
 ## [Unreleased]
 
+## [0.4.7] - 2026-11-04
+
+### Changed
+
+- changed the Maven dependency `com.google.guava:guava` from `33.7.2-jre` to `33.8.0-jre`
+- changed the Maven dependency `com.squareup.okhttp3:okhttp` from `5.5.0` to `5.5.1`
+- changed the Maven dependency `joda-time:joda-time` from `2.15.0` to `2.15.1`
+- moved the agent instructions from `CLAUDE.md` to `AGENTS.md`, keeping a `CLAUDE.md` that imports it
+- refreshed `AGENTS.md`, `.github/copilot-instructions.md`, the code-review skill, `README.md`, and `CONTRIBUTING.md` to drop stale dependency versions and `mvn spring-boot:run`, and to document that `app.restservice.base` comes from the consuming application, that `RestService` is package-private, and that the consuming application must declare a `RestTemplate` bean and define the `exception.*` message keys
+
+### Fixed
+
+- fixed OWASP Dependency-Check passing without scanning: removed `failOnError=false`, under which a failed NVD download skipped the analysis and the build still succeeded, and removed `nvdApiDelay=6000`, a 6-second pause between NVD API calls that the client's own rate limiting already makes unnecessary
+
+### Security
+
+- stopped passing the NVD API key's value into the Dependency-Check plugin configuration, where `mvn -X` printed it (GHSA-qqhq-8r2c-c3f5); the plugin now reads it from `NVD_API_KEY` by name through `nvdApiKeyEnvironmentVariable`
+
 ## [0.4.6] - 2026-10-14
 
 ### Changed
