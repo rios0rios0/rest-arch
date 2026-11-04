@@ -1,3 +1,0 @@
-kind: 'Changed'
-body: 'changed the Maven dependency `com.squareup.okhttp3:okhttp` from `5.5.0` to `5.5.1`'
-time: '2026-10-22T09:13:27.863914298Z'

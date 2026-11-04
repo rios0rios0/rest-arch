@@ -1,3 +1,0 @@
-kind: 'Changed'
-body: 'changed the Maven dependency `com.google.guava:guava` from `33.7.2-jre` to `33.8.0-jre`'
-time: '2026-11-03T09:10:04.161527953Z'
