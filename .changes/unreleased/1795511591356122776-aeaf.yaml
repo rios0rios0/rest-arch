@@ -1,0 +1,3 @@
+kind: 'Changed'
+body: 'changed the transitive Java dependencies to their latest versions'
+time: '2026-11-24T09:13:11.356122776Z'
